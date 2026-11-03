@@ -2,17 +2,9 @@
 
 Responsive event website where visitors browse, search and filter upcoming events, view details, and register. Includes an organiser dashboard, server-side validation, confirmation emails, and SEO basics. Built with **HTML5, CSS3 and vanilla JavaScript** on top of **Supabase** (no build step).
 
-- **Live site:** _add your deployed link here_
-- **GitHub repo:** _add your repository link here_
+- **Live site:** https://eventora-drab-three.vercel.app/
+- **GitHub repo:** https://github.com/YASH1483369/Eventora.git
 
-## Two modes
-
-| Mode | When | Data stored |
-|---|---|---|
-| **Demo** | `config.js` has empty Supabase values (default) | Browser only. Good for trying it out and for the college demo. |
-| **Live** | Supabase URL + anon key set in `config.js` | Real PostgreSQL database, admin login, emails. |
-
-See **[SETUP.md](SETUP.md)** to go live.
 
 ## Features
 
@@ -39,30 +31,9 @@ supabase/seed.sql                    sample events for the live database
 supabase/functions/send-confirmation Edge Function that emails the booking confirmation
 og-image.png                         social link preview (placeholder)
 tests/                               browser_test.py (Playwright) and db-test.sql (PostgreSQL)
-SETUP.md / HANDOFF.md                go-live steps / status for the next developer or agent
 ```
 
-## Run locally
-
-```bash
-python3 -m http.server 8000   # then open http://localhost:8000
-```
-
-(Opening `index.html` directly also works in demo mode.)
-
-## Deploy
-
-Static hosting: Vercel, Netlify or GitHub Pages. Details in [SETUP.md](SETUP.md).
-
-## Push to GitHub
-
-```bash
-git remote add origin https://github.com/<your-username>/<repo-name>.git
-git branch -M main
-git push -u origin main
-```
 
 ## Notes
 
-- The Supabase **anon key is public by design**; security comes from Row Level Security in `schema.sql`. Never commit the `service_role` key or email API keys.
-- Payments are not implemented (prices are display-only). See "Paid events" in SETUP.md.
+- Payments are not implemented (prices are display-only).
