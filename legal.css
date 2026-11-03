@@ -1,0 +1,9 @@
+.legal { max-width: 760px; padding: 44px 0 80px; }
+.legal h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); margin-bottom: 6px; }
+.legal h2 { font-size: 1.2rem; margin: 28px 0 8px; }
+.legal p, .legal li { color: var(--muted); }
+.legal ul { padding-left: 22px; margin: 8px 0; }
+.legal strong { color: var(--text); }
+.notfound { min-height: 80vh; display: grid; place-content: center; text-align: center; gap: 14px; padding: 20px; }
+.notfound .big { font: 800 clamp(4rem, 18vw, 8rem) "Poppins", sans-serif; line-height: 1; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.notfound p { color: var(--muted); }

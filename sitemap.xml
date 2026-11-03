@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Replace YOUR-DOMAIN.example with your real domain -->
+  <url><loc>https://YOUR-DOMAIN.example/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>

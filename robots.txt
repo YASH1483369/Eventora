@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+
+# Replace with your real domain, then keep sitemap.xml in sync
+Sitemap: https://YOUR-DOMAIN.example/sitemap.xml

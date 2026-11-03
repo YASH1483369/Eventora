@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eventora | Discover &amp; Register for Events</title>
+  <meta name="description" content="Eventora - discover and register for upcoming tech, music, workshop, sports, cultural and business events. Free and paid events, instant booking confirmation." />
+  <meta name="theme-color" content="#6c4cf1" />
+  <link rel="canonical" href="/" id="canonical" />
+  <!-- Open Graph / Twitter: set a real og-image.png (1200x630) in the project root, see SETUP.md -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Eventora" />
+  <meta property="og:title" content="Eventora | Discover &amp; Register for Events" />
+  <meta property="og:description" content="Find upcoming events, view details and reserve your spot in seconds." />
+  <meta property="og:image" content="og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎟️</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="demo-banner" id="demoBanner" hidden>
+    🧪 Demo mode - data is stored only in this browser. Connect Supabase in <code>config.js</code> to go live.
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="logo">🎟️ Event<span>ora</span></a>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#featured">Featured</a>
+        <a href="#events">Events</a>
+        <a href="#my-registrations">My Tickets <span class="count-badge" id="ticketCount">0</span></a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+      <div class="container hero-inner">
+        <p class="eyebrow reveal">✨ Your next great experience starts here</p>
+        <h1 class="reveal">Discover events that <span class="gradient-text">move you</span></h1>
+        <p class="hero-sub reveal">Hackathons, concerts, workshops, sports and cultural fests - find them, explore the details and grab your spot in seconds.</p>
+        <div class="hero-cta reveal">
+          <a href="#events" class="btn btn-primary">Explore Events</a>
+          <a href="#featured" class="btn btn-ghost">See Featured</a>
+        </div>
+        <div class="next-event reveal" id="nextEvent" aria-live="off"></div>
+        <div class="stats reveal">
+          <div><strong id="statEvents">0</strong><span>Upcoming events</span></div>
+          <div><strong id="statCats">0</strong><span>Categories</span></div>
+          <div><strong id="statReg">0</strong><span>Your registrations</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED -->
+    <section class="section" id="featured">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>⭐ Featured Events</h2>
+          <p>Hand-picked experiences you shouldn't miss.</p>
+        </div>
+        <div class="grid" id="featuredGrid"></div>
+      </div>
+    </section>
+
+    <!-- ALL EVENTS -->
+    <section class="section alt" id="events">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>📅 Upcoming Events</h2>
+          <p>Search by name, venue or city, or filter by category.</p>
+        </div>
+        <div class="toolbar reveal">
+          <div class="search-box">
+            <span aria-hidden="true">🔍</span>
+            <input type="search" id="searchInput" placeholder="Search events, venues, cities..." aria-label="Search events" />
+          </div>
+          <select id="sortSelect" aria-label="Sort events">
+            <option value="date">Soonest first</option>
+            <option value="name">Name A–Z</option>
+            <option value="price">Price: low to high</option>
+          </select>
+        </div>
+        <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+        <p class="result-count" id="resultCount" aria-live="polite"></p>
+        <div class="grid" id="eventsGrid"></div>
+        <div class="empty" id="emptyState" hidden>
+          <div class="empty-emoji">🕵️</div>
+          <h3>No events found</h3>
+          <p>Try a different keyword or category.</p>
+          <button class="btn btn-primary" id="resetFilters">Reset filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MY TICKETS -->
+    <section class="section" id="my-registrations">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>🎫 My Tickets</h2>
+          <p>Registrations made on this device. Keep your booking ID and email safe.</p>
+        </div>
+        <div class="tickets" id="ticketList"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="#home" class="logo">🎟️ Event<span>ora</span></a>
+      <p>© <span id="year"></span> Eventora · <a href="privacy.html">Privacy</a> · <a href="admin.html">Organiser login</a></p>
+      <a href="#home" class="to-top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <!-- MODAL: details + registration -->
+  <div class="modal-backdrop" id="modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close dialog">✕</button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js" defer></script>
+  <script src="data/seed-events.js" defer></script>
+  <script src="api.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
