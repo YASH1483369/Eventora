@@ -180,7 +180,7 @@ function openModal(id) {
         <h3>Register now</h3>
         <p class="sub">Fill in your details to reserve a spot.</p>
         <div class="field"><label for="fName">Full name</label>
-          <input id="fName" name="name" type="text" autocomplete="name" placeholder="e.g. Ananya Sahoo" maxlength="80" />
+          <input id="fName" name="name" type="text" autocomplete="name" placeholder="e.g. Yash Sinha" maxlength="80" />
           <div class="error"></div></div>
         <div class="field"><label for="fEmail">Email address</label>
           <input id="fEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="254" />
